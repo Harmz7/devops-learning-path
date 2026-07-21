@@ -1,0 +1,15 @@
+# Local Terraform folder
+.terraform/
+.terraform.lock.hcl
+
+# State files (contain sensitive data)
+*.tfstate
+*.tfstate.*
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Sensitive variables
+*.tfvars
+*.tfvars.json
