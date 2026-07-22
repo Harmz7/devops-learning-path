@@ -1,0 +1,46 @@
+---
+- name: Configure Web Server with NGINX
+  hosts: webservers
+  become: true  # Runs tasks with sudo (root) privileges
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install NGINX
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start and enable NGINX service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Deploy custom HTML index page
+      copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>DevOps Lab 5 - Ansible Success</title>
+              <style>
+                  body { font-family: Arial, sans-serif; background-color: #0f172a; color: #f8fafc; text-align: center; padding-top: 100px; }
+                  h1 { color: #38bdf8; }
+                  .container { border: 2px solid #38bdf8; display: inline-block; padding: 40px; border-radius: 12px; }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <h1>🚀 Deployed with Ansible & Terraform!</h1>
+                  <p>VM Configured dynamically using Infrastructure as Code & Configuration Management.</p>
+              </div>
+          </body>
+          </html>
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
