@@ -5,6 +5,7 @@
 # State files (contain sensitive data)
 *.tfstate
 *.tfstate.*
+*.tfvars
 
 # Crash logs
 crash.log
@@ -13,3 +14,4 @@ crash.*.log
 # Sensitive variables
 *.tfvars
 *.tfvars.json
+
