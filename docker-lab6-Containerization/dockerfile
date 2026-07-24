@@ -1,0 +1,11 @@
+# Step 1: Use an official lightweight NGINX base image
+FROM nginx:alpine
+
+# Step 2: Copy our static website into the default NGINX HTML folder
+COPY index.html /usr/share/nginx/html/index.html
+
+# Step 3: Expose port 80 to indicate traffic port
+EXPOSE 80
+
+# Step 4: Start NGINX in the foreground when the container launches
+CMD ["nginx", "-g", "daemon off;"]
