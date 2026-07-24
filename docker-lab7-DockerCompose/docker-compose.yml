@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  # Service 1: Our Python Flask Web Application
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+    environment:
+      FLASK_ENV: development
+
+  # Service 2: The Official Redis Cache Database
+  redis:
+    image: "redis:alpine"

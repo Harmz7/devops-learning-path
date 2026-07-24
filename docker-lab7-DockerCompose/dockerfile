@@ -1,0 +1,15 @@
+# Step 1: Use lightweight Python image
+FROM python:3.9-alpine
+
+# Step 2: Set working directory inside container
+WORKDIR /code
+
+# Step 3: Copy requirements and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Step 4: Copy app code
+COPY app.py .
+
+# Step 5: Run Flask app
+CMD ["python", "app.py"]
